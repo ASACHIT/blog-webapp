@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="/static/build.css">
+        <link href="http://fonts.cdnfonts.com/css/euclid-circular-a?styles=100037,100034,100036,100039,100031"
+            rel="stylesheet">
+        <script src="/static/js.js"></script>
+
+    </head>
+
+    <body class="bg-gray-100" style="font-family: 'Euclid Circular A', sans-serif;">
+        <header class="text-gray-600 body-font">
+            <nav class="bg-white shadow ">
+                <div class="container flex items-center justify-center p-6 mx-auto text-slate capitalize ">
+                    <a href="{% url 'home' %}"
+                        class="text-black  transition-colors duration-200 transform  border-b-2 hover:border-slate-600 mx-1.5 sm:mx-6">home</a>
+
+                    <a href="{% url 'addblog' %}"
+                        class="text-black border-b-2 border-transparent hover:text-gray-800 transition-colors duration-200 transform  hover:border-slate-600 mx-1.5 sm:mx-6">Create
+                        Blog</a>
+                    <a href="{% url 'deletepage' %}"
+                        class="text-black border-b-2 border-transparent hover:text-gray-800 transition-colors duration-200 transform  border-slate-600 mx-1.5 sm:mx-6">Delete
+                        Blog</a>
+
+                    <a href="/djangoadmin"
+                        class="text-black border-b-2 border-transparent hover:text-gray-800 transition-colors duration-200 transform hover:border-slate-600 mx-1.5 sm:mx-6">Complete
+                        Admin Panel</a>
+                </div>
+            </nav>
+        </header>
+
+        <!-- success popup modal -->
+        {% if messages %}
+        {% for msg in messages %}
+        <div id="error-modal" class="flex animate-pulse w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg
+       fixed left-8 top-8">
+            <div class="flex items-center justify-center w-12 stroke-slate-900">
+                <svg class="w-6 h-6 text-slate-800 fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M20 3.36667C10.8167 3.36667 3.3667 10.8167 3.3667 20C3.3667 29.1833 10.8167 36.6333 20 36.6333C29.1834 36.6333 36.6334 29.1833 36.6334 20C36.6334 10.8167 29.1834 3.36667 20 3.36667ZM19.1334 33.3333V22.9H13.3334L21.6667 6.66667V17.1H27.25L19.1334 33.3333Z" />
+                </svg>
+            </div>
+            <div class="px-4 py-2 -mx-3">
+                <div class="mx-3">
+                    <span class="font-semibold text-slate-800 ">Error</span>
+                    <p class="text-sm text-gray-600 ">{{msg}}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <!-- success popup modal -->
+
+
+
+        <!-- iterating over blog query set -->
+        <section class="text-gray-600 body-font">
+            <div class="container px-5 py-24 mx-auto">
+                <div class="container px-5 py-24 mx-auto">
+                    <div class="flex flex-col text-center w-full mb-12">
+                        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Admin:Blog Delete
+                            Page</h1>
+                        <p class="lg:w-2/3 mx-auto leading-relaxed text-base">You can Delete Content pressing Delete
+                            button</p>
+                    </div>
+                    <div class="flex flex-wrap -m-4">
+                        {% for i in blog_qset %}
+                        <div class="xl:w-1/4 md:w-1/2 p-4">
+                            <div class="p-6 rounded-lg bg-white">
+                                <img class="h-40 rounded w-full object-cover object-center mb-6" src="{{ i.thumbnail}}"
+                                    alt="thumbnail">
+                                <h3 class="tracking-widest text-green-500 text-xs font-medium title-font">
+                                    {{ i.category }}
+                                </h3>
+                                <h2 class="text-lg text-gray-900 font-medium title-font mb-4">{{ i.title }}</h2>
+                                <p class="leading-relaxed text-base">{{ i.desc }} </p>
+                                <a href="delete/{{ i.id }}"
+                                    class="transition duration-200 bg-gray-700 hover:bg-gray-800 focus:bg-gray-900 focus:shadow-sm focus:ring-4 focus:ring-gray-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block">delete</a>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+        </section>
+
+    </body>
+
+</html>

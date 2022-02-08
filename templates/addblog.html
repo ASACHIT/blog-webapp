@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/static/js.js"></script>
+    <link href="http://fonts.cdnfonts.com/css/euclid-circular-a?styles=100037,100034,100036,100039,100031"
+      rel="stylesheet">
+  </head>
+
+  <body style="font-family: 'Euclid Circular A', sans-serif;">
+    <header>
+      <nav class="bg-white shadow ">
+        <div class="container flex items-center justify-center p-6 mx-auto text-slate capitalize ">
+          <a href="{% url 'home' %}"
+            class="text-black  transition-colors duration-200 transform  border-b-2 hover:border-slate-600 mx-1.5 sm:mx-6">home</a>
+
+          <a href="{% url 'addblog' %}"
+            class="text-black border-b-2 border-transparent hover:text-gray-800 transition-colors duration-200 transform border-slate-600 mx-1.5 sm:mx-6">Create
+            Blog</a>
+          <a href="{% url 'deletepage' %}"
+            class="text-black border-b-2 border-transparent hover:text-gray-800 transition-colors duration-200 transform  hover:border-slate-600 mx-1.5 sm:mx-6">Delete
+            Blog</a>
+
+          <a href="/djangoadmin"
+            class="text-black border-b-2 border-transparent hover:text-gray-800 transition-colors duration-200 transform hover:border-slate-600 mx-1.5 sm:mx-6">Complete
+            Admin Panel</a>
+
+        </div>
+      </nav>
+    </header>
+    <!-- component -->
+    <!-- component -->
+    <div class="min-h-screen bg-gray-100 flex flex-col justify-center sm:py-12">
+      <div class="p-10 xs:p-0 mx-auto md:w-full md:max-w-md">
+        <h1 class="font-bold text-center text-2xl mb-5">Create A Blog</h1>
+        <div class="bg-white shadow w-full rounded-lg divide-y divide-gray-200">
+          <div class="px-5 py-7">
+            <form action="{% url 'addblog' %}" method="post">
+              {% csrf_token %}
+              <label class="font-semibold text-sm text-gray-600 pb-1 block">Title</label>
+              <input name="title" type="text" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+              <label class="font-semibold text-sm text-gray-600 pb-1 block">Description</label>
+              <input name="desc" type="text" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+              <label class="font-semibold text-sm text-gray-600 pb-1 block">Category</label>
+              <input name="cat" type="text" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+              <label class="font-semibold text-sm text-gray-600 pb-1 block">Thumbnail</label>
+              <input name="img" type="url" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+              <label class="font-semibold text-sm text-gray-600 pb-1 block">Source Link</label>
+              <input name="source" type="url" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+              <button type="submit"
+                class="transition duration-200 bg-gray-700 hover:bg-gray-800 focus:bg-gray-900 focus:shadow-sm focus:ring-4 focus:ring-gray-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block">
+                <span class="inline-block mr-2">Create Blog</span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  class="w-4 h-4 inline-block">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="py-5">
+          <div class="grid grid-cols-2 gap-1">
+            <div class="text-center sm:text-left whitespace-nowrap">
+              <a href="/">
+                <button
+                  class="transition duration-200 mx-5 px-5 py-4 cursor-pointer font-normal text-sm rounded-lg text-gray-500 hover:bg-gray-200 focus:outline-none focus:bg-gray-300 focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 ring-inset">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                    class="w-4 h-4 inline-block align-text-top">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                  </svg>
+                  <span class="inline-block ml-1">Back to Home</span>
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>

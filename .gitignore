@@ -1,0 +1,7 @@
+__pycache__
+poetry.lock
+pyproject.toml
+templates/node_modules
+templates/package.json
+templates/package-lock.json
+templates/tailwind.config.js

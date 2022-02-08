@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <link rel="stylesheet" href="/static/build.css">
+    <script src="/static/js.js"></script>
+  </head>
+
+  <body>
+
+    <!-- component -->
+    <!-- component -->
+    <div class="min-h-screen bg-gray-100 flex flex-col justify-center sm:py-12">
+      <!-- error popup modal -->
+      {% if messages %}
+      {% for msg in messages %}
+      <div id="error-modal" class="flex animate-pulse w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg
+       fixed left-8 top-8">
+        <div class="flex items-center justify-center w-12 stroke-slate-900">
+          <svg class="w-6 h-6 text-slate-800 fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M20 3.36667C10.8167 3.36667 3.3667 10.8167 3.3667 20C3.3667 29.1833 10.8167 36.6333 20 36.6333C29.1834 36.6333 36.6334 29.1833 36.6334 20C36.6334 10.8167 29.1834 3.36667 20 3.36667ZM19.1334 33.3333V22.9H13.3334L21.6667 6.66667V17.1H27.25L19.1334 33.3333Z" />
+          </svg>
+        </div>
+
+        <div class="px-4 py-2 -mx-3">
+          <div class="mx-3">
+            <span class="font-semibold text-slate-800 ">Error</span>
+            <p class="text-sm text-gray-600 ">{{msg}}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      {% endif %}
+      <!-- error popup modal -->
+      <div class="p-10 xs:p-0 mx-auto md:w-full md:max-w-md">
+        <h1 class="font-bold text-center text-2xl mb-5">Admin</h1>
+        <div class="bg-white shadow w-full rounded-lg divide-y divide-gray-200">
+          <div class="px-5 py-7">
+            <form method="post">
+              {% csrf_token %}
+              <label class="font-semibold text-sm text-gray-600 pb-1 block">Username</label>
+              <input type="text" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" name="username" />
+              <label class="font-semibold text-sm text-gray-600 pb-1 block">Password</label>
+              <input type="text" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" name="password" />
+              <button type="submit"
+                class="transition duration-200 bg-gray-700 hover:bg-gray-800 focus:bg-gray-900 focus:shadow-sm focus:ring-4 focus:ring-gray-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block">
+                <span class="inline-block mr-2">Login</span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  class="w-4 h-4 inline-block">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </button>
+            </form>
+          </div>
+          <div class="py-5">
+            <div class="grid grid-cols-2 gap-1">
+              <div class="text-center sm:text-left whitespace-nowrap">
+                <button
+                  class="transition duration-200 mx-5 px-5 py-4 cursor-pointer font-normal text-sm rounded-lg text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-200 focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 ring-inset">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                    class="w-4 h-4 inline-block align-text-top">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
+                  </svg>
+                  <span class="inline-block ml-1">Forgot Password</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="py-5">
+          <div class="grid grid-cols-2 gap-1">
+            <div class="text-center sm:text-left whitespace-nowrap">
+              <a href="/">
+                <button
+                  class="transition duration-200 mx-5 px-5 py-4 cursor-pointer font-normal text-sm rounded-lg text-gray-500 hover:bg-gray-200 focus:outline-none focus:bg-gray-300 focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 ring-inset">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                    class="w-4 h-4 inline-block align-text-top">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                  </svg>
+
+                  <span class="inline-block ml-1">Back to Home</span>
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+
+</html>
