@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,28 +10,17 @@
     <title>Blogs</title>
     <link href="http://fonts.cdnfonts.com/css/euclid-circular-a?styles=100037,100034,100036,100039,100031"
       rel="stylesheet">
-    <link rel="stylesheet" href="static/build.css">
-    <script src="static/js.js"></script>
+    <!-- tailwind css script -->
+    <link rel="stylesheet" href="{% static 'build.css' %}">
+
+
+    <script src="{% static 'js.js' %}"></script>
 
   </head>
 
   <body class="bg-gray-100" style="font-family: 'Euclid Circular A', sans-serif;">
     <header class="text-gray-600 body-font">
-      <nav class="bg-white shadow ">
-        <div class="container flex items-center justify-center p-6 mx-auto text-black capitalize">
-          <a href="{% url 'home' %}"
-            class="text-gray-800 transition-colors duration-200 transform  border-b-2 border-slate-600 mx-1.5 sm:mx-6">home</a>
-          {% if user.is_authenticated %}
-          <a href="{% url 'admin' %}"
-            class="border-b-2 border-transparent hover:text-gray-800 transition-colors duration-200 transform hover:border-slate-600 mx-1.5 sm:mx-6">Admin</a>
-          <a href="{% url 'logout' %}"
-            class="border-b-2 border-transparent hover:text-gray-800 transition-colors duration-200 transform hover:border-slate-600 mx-1.5 sm:mx-6">LogOut</a>
-          {% else %}
-          <a href="{% url 'login' %}"
-            class="border-b-2 border-transparent hover:text-gray-800 transition-colors duration-200 transform hover:border-slate-600 mx-1.5 sm:mx-6">Login</a>
-          {% endif %}
-        </div>
-      </nav>
+      {% include "nav.html" %}
     </header>
 
 
@@ -46,7 +37,7 @@
       </div>
       <div class="px-4 py-2 -mx-3">
         <div class="mx-3">
-          <span class="font-semibold text-emerald-500 dark:text-emerald-400">Success</span>
+          <span class="font-semibold text-emerald-500 dark:text-emerald-400">Message</span>
           <p class="text-sm text-black dark:text-black">{{msg}}</p>
         </div>
       </div>
@@ -77,8 +68,8 @@
               <img class="h-40 rounded w-full object-cover object-center mb-6" src="{{ i.thumbnail}}" alt="thumbnail">
               <h3 class="tracking-widest text-green-500 text-xs font-medium title-font">{{ i.category }}</h3>
               <h2 class="text-lg text-gray-900 font-medium title-font mb-4">{{ i.title }}</h2>
-              <p class="leading-relaxed text-base">{{ i.desc }} </p>
-              <a class="mt-3 inline-flex items-center hover:text-gray-900" href="{{i.read_more}}">Go To
+              <p class="leading-relaxed text-base">{{ i.desc | safe }} </p>
+              <a class="mt-3 inline-flex items-center hover:text-gray-900" href="{% url 'blogcontent' i.title %}">Go To
                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   class="w-4 h-4 ml-2" viewBox="0 0 24 24">
                   <path d="M5 12h14M12 5l7 7-7 7"></path>
@@ -96,10 +87,8 @@
   <footer class="text-gray-600 body-font">
     <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
       <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
-        <img
-          src="https://scontent.fktm1-2.fna.fbcdn.net/v/t39.30808-1/p200x200/272830664_1099633217521872_1109815197437443549_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=7206a8&_nc_ohc=BM-a5eIi8NAAX_YSvJa&_nc_ht=scontent.fktm1-2.fna&oh=00_AT-peAm2jbwsU5oYZOVYWZGpse5KPWozt2r25MDY8LAyuw&oe=6206F5FB"
-          class="w-14  h-w-14  text-white p-2 stroke-slate-50 rounded-full">
-        <span class="ml-3 text-xl">Sachit Yadav</span>
+        <img src="{{user.profile_pic.url}}" class="w-14  h-w-14  text-white p-2 stroke-slate-50 rounded-full">
+        <span class="ml-3 text-xl">Tech Blog/Articles</span>
       </a>
 
       <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">

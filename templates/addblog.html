@@ -1,13 +1,16 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="static/js.js"></script>
+    <link rel="stylesheet" href="{% static 'build.css' %}">
+
+    <script src="{% static 'js.js' %}"></script>
     <link href="http://fonts.cdnfonts.com/css/euclid-circular-a?styles=100037,100034,100036,100039,100031"
       rel="stylesheet">
+    <script src="https://cdn.ckeditor.com/4.18.0/standard/ckeditor.js"></script>
   </head>
 
   <body style="font-family: 'Euclid Circular A', sans-serif;">
@@ -34,9 +37,11 @@
     <!-- component -->
     <!-- component -->
     <div class="min-h-screen bg-gray-100 flex flex-col justify-center sm:py-12">
-      <div class="p-10 xs:p-0 mx-auto md:w-full md:max-w-md">
-        <h1 class="font-bold text-center text-2xl mb-5">Create A Blog</h1>
-        <div class="bg-white shadow w-full rounded-lg divide-y divide-gray-200">
+      <div class="mx-auto md:w-max ">
+        <div class=" flex justify-center mb-5">
+          <h1 class="w-full text-center font-bold text-2xl">Create A Blog</h1>
+        </div>
+        <div class="bg-white shadow w-full sm:w-max rounded-lg divide-y divide-gray-200">
           <div class="px-5 py-7">
             <form action="{% url 'addblog' %}" method="post">
               {% csrf_token %}
@@ -44,6 +49,13 @@
               <input name="title" type="text" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
               <label class="font-semibold text-sm text-gray-600 pb-1 block">Description</label>
               <input name="desc" type="text" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
+              <label class="font-semibold text-sm text-gray-600 pb-1 block">Content</label>
+              <!-- <input name="content" type="text" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" /> -->
+              <textarea name="content" id="" cols="30" rows="10"></textarea>
+              <script>
+                CKEDITOR.replace('content');
+
+              </script>
               <label class="font-semibold text-sm text-gray-600 pb-1 block">Category</label>
               <input name="cat" type="text" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
               <label class="font-semibold text-sm text-gray-600 pb-1 block">Thumbnail</label>

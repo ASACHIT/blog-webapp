@@ -1,0 +1,38 @@
+{% extends "verification/email_index.html" %}
+
+{%block content%}
+{% load static %}
+<link rel="stylesheet" href="{% static 'build.css' %}">
+
+<div>
+
+
+    <div class="row-auto h-auto border-8">
+        <div class="col-auto w-auto border-8">
+            <div class="container border-8 mt-20 pb-3">
+                <h1 class="text-center text-slate-900" style="font-size: calc(25px + 4vw);">
+                    {{status}}
+                </h1>
+            </div>
+            <hr class="bg-white w-36">
+
+            <div class="container border-4">
+                <h1 class="text-center text-slate-900" style="font-size: calc(15px + 1.5vw);">
+                    {{msg}}
+                </h1>
+            </div>
+
+            <div class="mt-5 flex justify-center">
+                <a href="{{link}}">
+                    <button>Login</button>
+                </a>
+            </div>
+            <div class="flex justify-center">
+                <img class="w-80" src="/static/assets/success.svg" alt="" srcset="">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock%}

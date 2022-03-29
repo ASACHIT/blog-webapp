@@ -1,0 +1,44 @@
+<script src="https://cdn.tailwindcss.com"></script>
+<div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+    {% if user.is_authenticated %}
+    <a href="{% url 'user_profile' user.username %}"
+        class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+        <div class="rounded-full overflow-hidden shadow-md w-16 h-16 ml-auto mr-auto border-4 border-white">
+            <img class="w-full h-full object-cover" src="{{user.profile_pic.url}}" alt="">
+        </div>
+        <span class="ml-3 text-xl">{{user.username}}</span>
+    </a>
+    {% endif %}
+    <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
+        <a href="{% url 'home' %}"
+            class="text-gray-800 transition-colors duration-200 transform  border-b-2 border-slate-600 mx-1.5 sm:mx-6">Home</a>
+        {% if user.is_superuser %}
+        <a href="{% url 'admin' %}"
+            class="border-b-2 border-transparent hover:text-gray-800 transition-colors duration-200 transform hover:border-slate-600 mx-1.5 sm:mx-6">Admin</a>
+        <a href="{% url 'logout' %}"
+            class="border-b-2 border-transparent hover:text-gray-800 transition-colors duration-200 transform hover:border-slate-600 mx-1.5 sm:mx-6">LogOut</a>
+        {% elif user.is_authenticated %}
+        <a href="{% url 'addblog' %}"
+            class="border-b-2 border-transparent hover:text-gray-800 transition-colors duration-200 transform hover:border-slate-600 mx-1.5 sm:mx-6">Post
+            Blog</a>
+        <a href="{% url 'logout' %}"
+            class="border-b-2 border-transparent hover:text-gray-800 transition-colors duration-200 transform hover:border-slate-600 mx-1.5 sm:mx-6">LogOut</a>
+        {% else %}
+        <a href="{% url 'addblog' %}"
+            class="border-b-2 border-transparent hover:text-gray-800 transition-colors duration-200 transform hover:border-slate-600 mx-1.5 sm:mx-6">Post
+            Blog</a>
+        <a href="{% url 'login' %}"
+            class="border-b-2 border-transparent hover:text-gray-800 transition-colors duration-200 transform hover:border-slate-600 mx-1.5 sm:mx-6">Login</a>
+        <a href="{% url 'register' %}"
+            class="border-b-2 border-transparent hover:text-gray-800 transition-colors duration-200 transform hover:border-slate-600 mx-1.5 sm:mx-6">Register</a>
+
+        {% endif %}
+    </nav>
+    <button
+        class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Button
+        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+            <path d="M5 12h14M12 5l7 7-7 7"></path>
+        </svg>
+    </button>
+</div>

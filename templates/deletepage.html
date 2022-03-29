@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,10 +7,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
-        <link rel="stylesheet" href="static/build.css">
+        <link rel="stylesheet" href="{% static 'build.css' %}">
+
         <link href="http://fonts.cdnfonts.com/css/euclid-circular-a?styles=100037,100034,100036,100039,100031"
             rel="stylesheet">
-        <script src="static/js.js"></script>
+        <script src="{% static 'js.js' %}"></script>
 
     </head>
 
@@ -17,6 +19,7 @@
         <header class="text-gray-600 body-font">
             <nav class="bg-white shadow ">
                 <div class="container flex items-center justify-center p-6 mx-auto text-slate capitalize ">
+
                     <a href="{% url 'home' %}"
                         class="text-black  transition-colors duration-200 transform  border-b-2 hover:border-slate-600 mx-1.5 sm:mx-6">home</a>
 
@@ -24,12 +27,16 @@
                         class="text-black border-b-2 border-transparent hover:text-gray-800 transition-colors duration-200 transform  hover:border-slate-600 mx-1.5 sm:mx-6">Create
                         Blog</a>
                     <a href="{% url 'deletepage' %}"
-                        class="text-black border-b-2 border-transparent hover:text-gray-800 transition-colors duration-200 transform  border-slate-600 mx-1.5 sm:mx-6">Delete
+                        class="text-black border-b-2 border-transparent hover:text-gray-800 transition-colors duration-200 transform  hover:border-slate-600 mx-1.5 sm:mx-6">Delete
+                        Blog</a>
+                    <a href="{% url 'review_post' %}"
+                        class="text-black border-b-2 border-transparent hover:text-gray-800 transition-colors duration-200 transform  hover:border-slate-600 mx-1.5 sm:mx-6">Review
                         Blog</a>
 
                     <a href="/djangoadmin"
                         class="text-black border-b-2 border-transparent hover:text-gray-800 transition-colors duration-200 transform hover:border-slate-600 mx-1.5 sm:mx-6">Complete
                         Admin Panel</a>
+
                 </div>
             </nav>
         </header>
@@ -47,7 +54,7 @@
             </div>
             <div class="px-4 py-2 -mx-3">
                 <div class="mx-3">
-                    <span class="font-semibold text-slate-800 ">Error</span>
+                    <span class="font-semibold text-slate-800 ">Message</span>
                     <p class="text-sm text-gray-600 ">{{msg}}</p>
                 </div>
             </div>
@@ -79,7 +86,7 @@
                                 </h3>
                                 <h2 class="text-lg text-gray-900 font-medium title-font mb-4">{{ i.title }}</h2>
                                 <p class="leading-relaxed text-base">{{ i.desc }} </p>
-                                <a href="delete/{{ i.id }}"
+                                <a href="{% url 'delete' i.title %}"
                                     class="transition duration-200 bg-gray-700 hover:bg-gray-800 focus:bg-gray-900 focus:shadow-sm focus:ring-4 focus:ring-gray-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block">delete</a>
                             </div>
                         </div>

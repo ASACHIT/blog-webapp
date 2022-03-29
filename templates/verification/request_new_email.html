@@ -1,0 +1,50 @@
+{% extends "email_index.html" %}
+
+{%block content%}
+<style>
+    #id_email {
+        /* add border */
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+</style>
+<div class="container" style="
+    height: auto;
+    margin-bottom: 0px; 
+    margin-top: 100px;
+    padding: 50px; 
+    border: 0px solid red;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+    
+    ">
+    <div class="container mt-5 ">
+        <p class="mb-5 text-3xl text-center">Request New Email for Verification</p>
+        <hr>
+        <form method='POST'>
+            {% csrf_token %}
+
+            <fieldset class="text-xl mt-2 flex justify-center">
+                {{form}}
+            </fieldset>
+
+            <div class="mb-12 flex justify-center">
+                <div class="w-full px-2 mb-5 flex justify-center">
+                    <button type="submit"
+                        class="block w-full max-w-xs mt-4 bg-gray-700 hover:bg-gray-800 duration-300 focus:bg-gray-700 text-white rounded-lg px-2 py-3 font-medium">Request
+                        New Email
+                        Now</button>
+                </div>
+            </div>
+        </form>
+        <div class=" flex justify-center">
+            <img class="w-80" src="/static/assets/mail_delivery.svg" alt="" srcset="">
+        </div>
+
+
+    </div>
+</div>
+
+{% endblock %}

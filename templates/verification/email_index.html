@@ -1,0 +1,34 @@
+{%load static%}
+
+
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
+        <link rel="stylesheet" href="{% static 'build.css' %}">
+        <script src="{% static 'js.js' %}"></script>
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <link href="http://fonts.cdnfonts.com/css/euclid-circular-a?styles=100037,100034,100036,100039,100031"
+            rel="stylesheet">
+        <title>{{status}}</title>
+    </head>
+
+    <body class="bg-gray-200 text-gray-800 flex justify-center" style="font-family: 'Euclid Circular A', sans-serif;">
+        {% if messages%}
+        {% for message in messages %}
+        <div class="">
+            {{message}}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+
+        {%block content%}
+        {%endblock%}
+    </body>
+
+</html>

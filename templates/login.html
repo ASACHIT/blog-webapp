@@ -1,12 +1,14 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <link rel="stylesheet" href="{% static 'build.css' %}">
+
     <link rel="stylesheet" href="static/build.css">
-    <script src="static/js.js"></script>
+    <script src="{% static 'js.js' %}"></script>
   </head>
 
   <body>
@@ -37,15 +39,15 @@
       {% endif %}
       <!-- error popup modal -->
       <div class="p-10 xs:p-0 mx-auto md:w-full md:max-w-md">
-        <h1 class="font-bold text-center text-2xl mb-5">Admin</h1>
+        <h1 class="font-bold text-center text-2xl mb-5">Login</h1>
         <div class="bg-white shadow w-full rounded-lg divide-y divide-gray-200">
           <div class="px-5 py-7">
             <form method="post">
               {% csrf_token %}
-              <label class="font-semibold text-sm text-gray-600 pb-1 block">Username</label>
-              <input type="text" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" name="username" />
+              <label class="font-semibold text-sm text-gray-600 pb-1 block">Email</label>
+              <input type="text" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" name="email" />
               <label class="font-semibold text-sm text-gray-600 pb-1 block">Password</label>
-              <input type="text" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" name="password" />
+              <input type="password" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" name="password" />
               <button type="submit"
                 class="transition duration-200 bg-gray-700 hover:bg-gray-800 focus:bg-gray-900 focus:shadow-sm focus:ring-4 focus:ring-gray-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block">
                 <span class="inline-block mr-2">Login</span>
